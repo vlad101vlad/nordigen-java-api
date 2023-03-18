@@ -2,19 +2,15 @@ package com.vladraresraducu.nordigenjavaapi.token;
 
 import com.vladraresraducu.nordigenjavaapi.token.model.JWTObtainPairRequest;
 import com.vladraresraducu.nordigenjavaapi.token.model.JWTRefreshRequest;
-import com.vladraresraducu.nordigenjavaapi.token.model.SpectacularJWTRefresh;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class TokenResourceConsumerTest {
+class TokenResourceConsumerTest {
     @Value("${token.secret.id}")
     private String secretId;
     @Value("${token.secret.key}")
@@ -23,21 +19,23 @@ public class TokenResourceConsumerTest {
     @Autowired
     private TokenResourceConsumer tokenResourceConsumer;
 
-    @Order(1)
     @Test
-    public void testV2TokenNew_shouldReturnJWT() {
-        var spectacularJWTObtain = tokenResourceConsumer.getNewToken(getJwtObtainPairRequest());
-        assertNotNull(spectacularJWTObtain);
-    }
-    @Order(2)
-    @Test
-    public void testV2RefreshToken_shouldReturnJWTRefresh() {
-        var spectacularJWTObtain = tokenResourceConsumer.getNewToken(getJwtObtainPairRequest());
-        SpectacularJWTRefresh spectacularJWTRefresh = tokenResourceConsumer.refreshToken(new JWTRefreshRequest(spectacularJWTObtain.getRefresh()));
-        assertNotNull(spectacularJWTRefresh);
+    public void testGetToken_shouldReturnToken() {
+        var token = tokenResourceConsumer.getToken(jwtObtainPairRequest());
+        assertNotNull(token);
+        assertTrue(token.getAccess_expires() > 0);
     }
 
-    private JWTObtainPairRequest getJwtObtainPairRequest() {
-        return new JWTObtainPairRequest(this.secretId, this.secretKey);
+    @Test
+    public void testGetRefreshToken_shouldRefreshToken() {
+        var token = tokenResourceConsumer.getToken(jwtObtainPairRequest());
+        assertNotNull(token);
+        var refreshToken = tokenResourceConsumer.getRefreshToken(new JWTRefreshRequest(token.getRefresh()));
+        assertNotNull(refreshToken);
+        assertTrue(refreshToken.getAccess_expires() > 0);
+    }
+
+    private JWTObtainPairRequest jwtObtainPairRequest() {
+        return new JWTObtainPairRequest(secretId, secretKey);
     }
 }

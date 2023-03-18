@@ -1,8 +1,13 @@
 package com.vladraresraducu.nordigenjavaapi.token.model;
 
-public class SpectacularJWTRefresh {
-    private final String access;
-    private final int access_expires;
+import java.io.Serializable;
+
+public class SpectacularJWTRefresh implements Serializable {
+    private String access;
+    private int access_expires;
+
+    public SpectacularJWTRefresh() {
+    }
 
     public SpectacularJWTRefresh(String access, int access_expires) {
         this.access = access;

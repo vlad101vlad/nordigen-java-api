@@ -1,10 +1,13 @@
 package com.vladraresraducu.nordigenjavaapi.token.model;
 
 public class SpectacularJWTObtain {
-    private final String access;
-    private final int access_expires;
-    private final String refresh;
-    private final int refresh_expires;
+    private String access;
+    private int access_expires;
+    private String refresh;
+    private int refresh_expires;
+
+    public SpectacularJWTObtain() {
+    }
 
     public SpectacularJWTObtain(String access, int accessExpires, String refresh, int refreshExpires) {
         this.access = access;
