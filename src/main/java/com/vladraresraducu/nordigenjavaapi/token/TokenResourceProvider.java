@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 public class TokenResourceProvider {
     private final String NEW_TOKEN_URL = "/api/v2/token/new/";
     private final String REFRESH_TOKEN_URL = "/api/v2/token/refresh/";
-    private final WebClient webClient;
+    private WebClient webClient;
 
     public TokenResourceProvider(WebClient webClient) {
         this.webClient = webClient;

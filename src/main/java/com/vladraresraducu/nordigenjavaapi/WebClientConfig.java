@@ -7,9 +7,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class WebClientConfig {
+    public final static String NORDIGEN_URL = "https://ob.nordigen.com";
+
     @Bean
     public WebClient webClient() {
-        final String NORDIGEN_URL = "https://ob.nordigen.com";
         return WebClient.builder().baseUrl(NORDIGEN_URL).build();
     }
 
