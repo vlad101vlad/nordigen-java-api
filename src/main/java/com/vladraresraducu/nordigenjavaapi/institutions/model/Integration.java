@@ -1,25 +1,24 @@
 package com.vladraresraducu.nordigenjavaapi.institutions.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Integration implements Serializable {
     private String id;
     private String name;
     private String bic;
     private String transaction_total_days;
-    private List<Country> countryList;
+    private Country[] countries;
     private String logo;
 
     public Integration() {
     }
 
-    public Integration(String id, String name, String bic, String transaction_total_days, List<Country> countryList, String logo) {
+    public Integration(String id, String name, String bic, String transaction_total_days, Country[] countryList, String logo) {
         this.id = id;
         this.name = name;
         this.bic = bic;
         this.transaction_total_days = transaction_total_days;
-        this.countryList = countryList;
+        this.countries = countryList;
         this.logo = logo;
     }
 
@@ -55,12 +54,12 @@ public class Integration implements Serializable {
         this.transaction_total_days = transaction_total_days;
     }
 
-    public List<Country> getCountryList() {
-        return countryList;
+    public Country[] getCountries() {
+        return countries;
     }
 
-    public void setCountryList(List<Country> countryList) {
-        this.countryList = countryList;
+    public void setCountries(Country[] countries) {
+        this.countries = countries;
     }
 
     public String getLogo() {
