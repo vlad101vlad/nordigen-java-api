@@ -1,27 +1,22 @@
 package com.vladraresraducu.nordigenjavaapi.institutions.model;
 
 import com.vladraresraducu.nordigenjavaapi.enums.Country;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 
-public class Integration implements Serializable {
+public class IntegrationRetrieve implements Serializable {
     private String id;
     private String name;
     private String bic;
     private String transaction_total_days;
     private Country[] countries;
     private String logo;
+    private JSONObject supported_payments;
+    private String[] supported_features;
 
-    public Integration() {
-    }
 
-    public Integration(String id, String name, String bic, String transaction_total_days, Country[] countryList, String logo) {
-        this.id = id;
-        this.name = name;
-        this.bic = bic;
-        this.transaction_total_days = transaction_total_days;
-        this.countries = countryList;
-        this.logo = logo;
+    public IntegrationRetrieve() {
     }
 
     public String getId() {
@@ -72,8 +67,19 @@ public class Integration implements Serializable {
         this.logo = logo;
     }
 
-    @Override
-    public String toString() {
-        return this.id + "--" + this.name;
+    public JSONObject getSupported_payments() {
+        return supported_payments;
+    }
+
+    public void setSupported_payments(JSONObject supported_payments) {
+        this.supported_payments = supported_payments;
+    }
+
+    public String[] getSupported_features() {
+        return supported_features;
+    }
+
+    public void setSupported_features(String[] supported_features) {
+        this.supported_features = supported_features;
     }
 }

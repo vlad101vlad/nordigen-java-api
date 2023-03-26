@@ -1,4 +1,4 @@
-package com.vladraresraducu.nordigenjavaapi.institutions.model;
+package com.vladraresraducu.nordigenjavaapi.enums;
 
 public enum Country {
     GB("GB"),
@@ -31,7 +31,8 @@ public enum Country {
     PT("PT"),
     RO("RO"),
     SK("SK"),
-    SI("SI");
+    SI("SI"),
+    XX("XX");
 
 
     private String countryCode;

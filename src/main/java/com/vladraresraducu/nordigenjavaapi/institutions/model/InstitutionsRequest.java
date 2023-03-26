@@ -1,5 +1,7 @@
 package com.vladraresraducu.nordigenjavaapi.institutions.model;
 
+import com.vladraresraducu.nordigenjavaapi.enums.Country;
+
 import java.io.Serializable;
 
 public class InstitutionsRequest implements Serializable {

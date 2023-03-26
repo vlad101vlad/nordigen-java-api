@@ -2,6 +2,7 @@ package com.vladraresraducu.nordigenjavaapi.institutions;
 
 import com.vladraresraducu.nordigenjavaapi.institutions.model.Integration;
 import com.vladraresraducu.nordigenjavaapi.institutions.model.InstitutionsRequest;
+import com.vladraresraducu.nordigenjavaapi.institutions.model.IntegrationRetrieve;
 import com.vladraresraducu.nordigenjavaapi.token.TokenContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -33,6 +34,16 @@ public class InstitutionsResourceConsumer {
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + tokenContext.getAccessToken())
                 .retrieve()
                 .bodyToMono(Integration[].class)
+                .block();
+    }
+
+    public IntegrationRetrieve getInstitution(String id) {
+        return this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path(DETAILS_ABOUT_SPECIFIC_INSTITUTIONS_URL).build(id))
+                .accept(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + tokenContext.getAccessToken())
+                .retrieve()
+                .bodyToMono(IntegrationRetrieve.class)
                 .block();
     }
 }
