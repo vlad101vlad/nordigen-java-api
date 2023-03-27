@@ -1,5 +1,6 @@
 package com.vladraresraducu.nordigenjavaapi;
 
+import com.vladraresraducu.nordigenjavaapi.agreements.AgreementsResourceConsumer;
 import com.vladraresraducu.nordigenjavaapi.institutions.InstitutionsResourceConsumer;
 import com.vladraresraducu.nordigenjavaapi.token.TokenContext;
 import com.vladraresraducu.nordigenjavaapi.token.TokenResourceConsumer;
@@ -20,6 +21,8 @@ public class NordigenApiClient {
     private TokenResourceConsumer tokenResourceConsumer;
     @Autowired
     public InstitutionsResourceConsumer institutionsResourceConsumer;
+    @Autowired
+    public AgreementsResourceConsumer agreementsResourceConsumer;
 
     public NordigenApiClient(@Value("${token.secret.id}") String secretId,
                              @Value("${token.secret.key}") String secretKey) {
